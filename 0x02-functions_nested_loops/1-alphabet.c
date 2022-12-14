@@ -1,5 +1,8 @@
 #include "main.h"
 
+/**
+ * print_alphabet - print a-z
+ */
 void print_alphabet(void)
 {
 	int b;
