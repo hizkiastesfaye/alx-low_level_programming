@@ -1,4 +1,4 @@
-#include <stdio>
+#include "main.h"
 /**
  * _memset - a function that replaces values of string
  * @s: pointer to the param b
