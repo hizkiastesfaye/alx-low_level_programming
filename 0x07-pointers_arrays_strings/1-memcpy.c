@@ -3,6 +3,7 @@
  * _memcpy - function to copy memory of one pointer to another
  * @dest: pointer param of destination
  * @src: pointer param of source
+ * @n: size of the src array
  * Return: returns dest
  */
 char *_memcpy(char *dest, char *src, unsigned int n)
