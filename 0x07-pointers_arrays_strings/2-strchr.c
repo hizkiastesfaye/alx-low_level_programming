@@ -1,17 +1,22 @@
 #include "main.h"
+#include <stddef.h>
 /**
- * _strchr - function to check similarity
- * @s: param of pointer to pointed to c
- * @c: param of value
- * Return: passing pointer s
+ * _strchr - function that locates a character in a string
+ * @s: string pointer.
+ * @c: character.
+ * Return: first occurrence of the character.
  */
-char *_strchr(char *s,chr c)
+char *_strchr(char *s, char c)
 {
-	for(; *s != '\0'; s++)
+	for (; *s != '\0'; s++)
 	{
-		if (*s == c)
-			return (s);
-		else
-			return (NULL);
+	if (*s == c)
+		return (s);
 	}
+	if (*s == c)
+	{
+		return (s);
+	}
+	else
+	return (NULL);
 }
