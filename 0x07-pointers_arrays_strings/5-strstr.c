@@ -3,7 +3,7 @@
  * _strstr -function to search string
  * @haystack: pointer param of string
  * @needle: pointer param of sustring
- * Return: return the string
+ * Return: 0
  */
 char *_strstr(char *haystack, char *needle)
 {
