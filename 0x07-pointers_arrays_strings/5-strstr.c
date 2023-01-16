@@ -1,28 +1,36 @@
 #include "main.h"
+
 /**
- * _strstr -function to search string
- * @haystack: pointer param of string
- * @needle: pointer param of sustring
- * Return: 0
- */
+* _strstr - locates a string
+* @haystack: pointer to char
+* @needle: pointer to char
+* Return: 0
+*/
+
 char *_strstr(char *haystack, char *needle)
 {
-	int i;
+int index;
+
 	if (*needle == 0)
 		return (haystack);
+
 	while (*haystack)
 	{
-		i = 0;
+		index = 0;
 
-		if (haystack[i] == needle[i])
+		if (haystack[index] == needle[index])
 		{
 			do {
-				if (*(needle + i + 1) == '\0')
+				if (needle[index + 1] == '\0')
 					return (haystack);
-				i++;
-			} while (*(haystack + i) == *(needle + i));
+
+				index++;
+
+			} while (haystack[index] == needle[index]);
 		}
+
 		haystack++;
 	}
+
 	return ('\0');
 }
