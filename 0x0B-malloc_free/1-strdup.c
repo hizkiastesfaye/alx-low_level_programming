@@ -6,12 +6,13 @@
  */
 char *_strdup(char *str)
 {
-	int i;
+	int j,i;
 	char *dup;
 
 	if (str == NULL)
 		return (NULL);
-	dup = malloc(sizeof(*(str)));
+	for (j = 0; *(str + j) !='\0';j++)
+	dup = malloc((1 + j) * sizeof(char));
 	if (dup == NULL)
 		return (NULL);
 	for (i = 0; *(str + i) != '\0'; i++)
