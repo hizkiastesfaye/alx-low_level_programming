@@ -1,19 +1,31 @@
+#include "main.h"
 #include <stdlib.h>
 /**
- * _realloc - function of contiguous allocatiiion
- * @ptr: pointer param
- * @old_size: previous ptr size
- * @new_size: new string size
- * Return: return the pointer
+ * _realloc - reallocates a memory block.
+ * @ptr: pointer to the memory previously allocated.
+ * @old_size: size, in bytes, of the allocated space of ptr.
+ * @new_size: new size, in bytes, of the new memory block.
+ *
+ * Return: ptr.
+ * if new_size == old_size, returns ptr without changes.
+ * if malloc fails, returns NULL.
  */
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 {
-	if (old_size == 0 || new_size == 0)
+	if (new_size == 0 && ptr != NULL)
+	{
+		free(ptr);
 		return (NULL);
-	if (old_size == new_size)
-		return (ptr);
-	ptr = realloc(ptr, new_size);
+	}
+
 	if (ptr == NULL)
-		return (NULL);
+		ptr = malloc(new_size);
+
+	if (new_size == old_size)
+		return (ptr);
+
+	free(ptr);
+	ptr = malloc(new_size);
+
 	return (ptr);
 }
