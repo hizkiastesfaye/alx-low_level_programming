@@ -8,40 +8,59 @@
  * @size_r: buffer size:
  * Return: the pointer to dest.
  */
-
 char *infinite_add(char *n1, char *n2, char *r, int size_r)
 {
-	int i, j, k, l, m, n;
 
-	for (i = 0; n1[i]; i++)
+	int a, h, i, j, k, l = 0, t, u, v, y = 0, z;
+
+	for (i = 0; *(n1 + i); i++)
 		;
-	for (j = 0; n2[j]; j++)
+	for (j = 0; *(n2 + j); j++)
 		;
-	if (i > size_r || j > size_r)
-		return (0);
-	m = 0;
-	for (i -= 1, j -= 1, k = 0; k < size_r - 1; i--, j--, k++)
+	if (i >= j)
+		a = i;
+	else
+		a = j;
+
+	char s[size_r];
+
+	k = i - 1;
+	h = j - 1;
+	for (; l < a; l++)
 	{
-		n = m;
-		if (i >= 0)
-			n += n1[i] - '0';
-		if (j >= 0)
-			n += n2[j] - '0';
-		if (i < 0 && j < 0 && n == 0)
+		if (k >= 0 && h < 0)
 		{
-			break;
+			u = n1[k] - '0';
+			v = u + y;
+			k--;
 		}
-		m = n / 10;
-		r[k] = n % 10 + '0';
+		else if (h >= 0 && k < 0)
+		{
+			t = n2[h] - '0';
+			v = t + y;
+			h--;
+		}
+		else
+		{
+			u = n1[k] - '0';
+			t = n2[h] - '0';
+			v = u + t + y;
+			h--;
+			k--;
+		}
+		y = v / 10;
+		z = v % 10;
+		s[l] = z + '0';
 	}
-	r[k] = '\0';
-	if (i >= 0 || j >= 0 || m)
+	if (v / 10)
+		s[l] = y + '0';
+	else
+		l--;
+	k = 0;
+	h = l;
+	for (; k < size_r; k++, h--)
+		r[k] = s[h];
+	if (l >= size_r - 1)
 		return (0);
-	for (k -= 1, l = 0; l < k; k--, l++)
-	{
-		m = r[k];
-		r[k] = r[l];
-		r[l] = m;
-	}
 	return (r);
 }
