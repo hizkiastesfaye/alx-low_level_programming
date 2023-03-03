@@ -1,5 +1,5 @@
 #include "main.h"
-
+#include <stdio.h>
 /**
  * infinite_add - adds two numbers
  * @n1: number one.
@@ -8,42 +8,47 @@
  * @size_r: buffer size:
  * Return: the pointer to dest.
  */
+
 char *infinite_add(char *n1, char *n2, char *r, int size_r)
 {
-	int a, ab, h, i, j, k, l = 0, v, y = 0, z;
+	int c1 = 0, c2 = 0, op, bg, dr1, dr2, add = 0;
 
-	for (i = 0; *(n1 + i); i++)
-		;
-	for (j = 0; *(n2 + j); j++)
-		;
-	if (i >= j)
-		a = i;
+	while (*(n1 + c1) != '\0')
+		c1++;
+	while (*(n2 + c2) != '\0')
+		c2++;
+	if (c1 >= c2)
+		bg = c1;
 	else
-		a = j;
-	if (a >= size_r - 1)
+		bg = c2;
+	if (size_r <= bg + 1)
 		return (0);
-	for (k = i - 1, h = j - 1; l < a; l++, k--, h--)
+	r[bg + 1] = '\0';
+	c1--, c2--, size_r--;
+	dr1 = *(n1 + c1) - 48, dr2 = *(n2 + c2) - 48;
+	while (bg >= 0)
 	{
-		if (k >= 0 && h < 0)
-			v = (n1[k] - '0') + y;
-		else if (h >= 0 && k < 0)
-			v = (n2[h] - '0') + y;
+		op = dr1 + dr2 + add;
+		if (op >= 10)
+			add = op / 10;
 		else
-			v = (n1[k] - '0') + (n2[h] - '0') + y;
-		y = v / 10;
-		z = v % 10;
-		r[l] = z + '0';
+			add = 0;
+		if (op > 0)
+		*(r + bg) = (op % 10) + 48;
+		else
+			*(r + bg) = '0';
+		if (c1 > 0)
+			c1--, dr1 = *(n1 + c1) - 48;
+		else
+			dr1 = 0;
+		if (c2 > 0)
+			c2--, dr2 = *(n2 + c2) - 48;
+		else
+			dr2 = 0;
+		bg--, size_r--;
 	}
-	if (v / 10)
-		r[l] = y + '0';
+	if (*(r) == '0')
+		return (r + 1);
 	else
-		l--;
-	for (k = 0, h = l; k <= (size_r - 1) / 2; k++, h--)
-	{
-		ab = r[k];
-		r[k] = r[h];
-		r[h] = ab;
-	}
-	r[a + 1] = '\0';
-	return (r);
+		return (r);
 }
